@@ -29,8 +29,8 @@ def update(self, instance, validated_data):
     confirm_password = validated_data.get('confirm_password', None)
 
     if password and confirm_password and password == confirm_password:
-    instance.set_password(password)
-    instance.save()
+        instance.set_password(password)
+        instance.save()
 
     update_session_auth_hash(self.context.get('request'), instance)
 
