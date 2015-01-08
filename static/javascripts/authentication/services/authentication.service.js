@@ -36,9 +36,9 @@
     /**
     * @name register
     * @desc Try to register a new user
-    * @param {string} username The username entered by the user
-    * @param {string} password The password entered by the user
     * @param {string} email The email entered by the user
+    * @param {string} password The password entered by the user
+    * @param {string} username The username entered by the user
     * @returns {Promise}
     * @memberOf thinkster.authentication.services.Authentication
     */
@@ -47,7 +47,23 @@
         username: username,
         password: password,
         email: email
-      });
+      }).then(registerSuccessFn, registerErrorFn);
+
+      /**
+      * @name registerSuccessFn
+      * @desc Log the new user in
+      */
+      function registerSuccessFn(data, status, headers, config) {
+        Authentication.login(email, password);
+      }
+
+      /**
+      * @name registerErrorFn
+      * @desc Log "Epic failure!" to the console
+      */
+      function registerErrorFn(data, status, headers, config) {
+        console.error('Epic failure!');
+      }
     }
     /**
      * @name login

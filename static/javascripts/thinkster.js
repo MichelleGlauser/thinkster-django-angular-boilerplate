@@ -1,20 +1,24 @@
 (function () {
   'use strict';
 
-  	angular
-    	.module('thinkster', [
+	angular
+	    .module('thinkster', [
 			'thinkster.config',
-	    	'thinkster.routes',
-	    	'thinkster.authentication'
+	      	'thinkster.routes',
+	      	'thinkster.authentication'
 	    ]);
 
+	angular
+  		.module('thinkster.config', []);
+
   	angular
-  		.module('thinkster.routes', ['ngRoute']);
+    	.module('thinkster.routes', ['ngRoute']);
+
   	angular
 	  	.module('thinkster')
 	  	.run(run);
 
-	run.$inject = ['$http'];
+		run.$inject = ['$http'];
 
 	/**
 	* @name run
@@ -24,6 +28,4 @@
 	  $http.defaults.xsrfHeaderName = 'X-CSRFToken';
 	  $http.defaults.xsrfCookieName = 'csrftoken';
 	}
-	angular
-		.module('thinkster.config', []);
 })();
